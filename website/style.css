@@ -1,1 +1,243 @@
 
+/* General styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #180C10;
+    color: #F8D98B;
+    font-family: Georgia, serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Fireworks background */
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Main greeting card */
+
+.container {
+    position: relative;
+    z-index: 1;
+
+    padding: 40px 25px;
+
+    border: 2px solid #C99B42;
+    border-radius: 20px;
+
+    width: 90%;
+    max-width: 600px;
+
+    background: rgba(35, 15, 23, 0.85);
+
+    box-shadow:
+        0 0 20px #A8782B,
+        inset 0 0 20px rgba(214, 167, 68, 0.1);
+}
+
+/* Top heading */
+
+.top-text {
+    letter-spacing: 4px;
+    font-size: 12px;
+
+    margin-bottom: 25px;
+    color: #E6B95C;
+}
+
+/* Main title */
+
+h1 {
+    font-size: 42px;
+    color: #FFD77A;
+
+    margin-bottom: 20px;
+
+    text-shadow: 0 0 15px #D69C35;
+}
+
+/* Decorative line */
+
+.gold-line {
+    width: 100px;
+    height: 2px;
+
+    background: #D6A744;
+
+    margin: 0 auto 25px;
+}
+
+/* Greeting message */
+
+.message {
+    font-size: 18px;
+    line-height: 1.8;
+
+    color: #FFF0C2;
+}
+
+/* Diyas section */
+
+.diyas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 55px;
+
+    margin: 55px 0;
+}
+
+/* Individual diya */
+
+.diya {
+    position: relative;
+
+    width: 65px;
+    height: 65px;
+}
+
+/* Diya bowl */
+
+.bowl {
+    position: absolute;
+    bottom: 0;
+
+    width: 65px;
+    height: 27px;
+
+    background: linear-gradient(
+        #F9D477,
+        #A96812,
+        #6D3908
+    );
+
+    border-radius: 10px 10px 35px 35px;
+
+    box-shadow: 0 0 20px #D69C35;
+}
+
+/* Diya flame */
+
+.flame {
+    position: absolute;
+
+    left: 25px;
+    bottom: 24px;
+
+    width: 16px;
+    height: 31px;
+
+    background: linear-gradient(
+        to top,
+        #FF5A00,
+        #FFD447,
+        #FFF4C2
+    );
+
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+
+    transform-origin: bottom center;
+
+    animation: flicker 0.35s infinite alternate;
+
+    box-shadow: 0 0 18px #FFAA22;
+}
+
+/* Flame animation */
+
+@keyframes flicker {
+
+    0% {
+        transform: rotate(-8deg) scale(0.95);
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.08);
+    }
+
+    100% {
+        transform: rotate(-4deg) scale(0.98);
+    }
+
+}
+
+/* Button styling */
+
+button {
+    background: #D6A744;
+    color: #180C10;
+
+    padding: 14px 25px;
+
+    border: none;
+    border-radius: 30px;
+
+    font-size: 16px;
+    font-family: Georgia, serif;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #FFE09A;
+
+    transform: scale(1.05);
+
+    box-shadow: 0 0 20px #D6A744;
+}
+
+/* Footer */
+
+.footer {
+    margin-top: 30px;
+    font-size: 14px;
+
+    color: #E6B95C;
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .message {
+        font-size: 16px;
+    }
+
+    .diyas {
+        gap: 30px;
+    }
+
+}
+
