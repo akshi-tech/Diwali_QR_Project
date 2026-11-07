@@ -326,8 +326,16 @@ button:hover {
 
 /* ===== STYLISH SIGNATURE ===== */
 
+
+/* STYLISH LETTER SIGNATURE */
+
 .signature {
-    margin-top: 35px;
+    margin-top: 45px;
+
+    text-align: right;
+
+    padding-right: 15px;
+
     color: #EAC477;
 }
 
@@ -342,6 +350,7 @@ button:hover {
                  cursive;
 
     font-size: clamp(45px, 9vw, 65px);
+
     font-weight: normal;
 
     color: #FFD77A;
@@ -357,6 +366,7 @@ button:hover {
     font-size: 11px;
     letter-spacing: 4px;
 }
+
 
 /* BACK BUTTON */
 
