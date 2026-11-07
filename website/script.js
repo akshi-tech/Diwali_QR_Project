@@ -268,28 +268,34 @@ celebrateButton.addEventListener("click", () => {
 
 
 // CLICK ANYWHERE TO CREATE FIREWORKS
-celebration.addEventListener("click", (event) => {
 
-    if (event.target.closest("button")) {
-        return;
-    }
+// CLICK ANYWHERE ON THE SCREEN
+document.addEventListener("click", (event) => {
+
+    // Only work on celebration screen
+    if (celebration.hidden) return;
+
+    // Ignore button clicks
+    if (event.target.closest("button")) return;
 
     const x = event.clientX;
     const y = event.clientY;
 
-    // Multiple colourful fireworks at click position
-    for (let i = 0; i < 3; i++) {
+    // Launch fireworks exactly where user clicks
+    for (let i = 0; i < 4; i++) {
 
         setTimeout(() => {
 
             launchRocket(
-                x + (Math.random() - 0.5) * 70,
-                y + (Math.random() - 0.5) * 70
+                x + (Math.random() - 0.5) * 60,
+                y + (Math.random() - 0.5) * 60
             );
 
-        }, i * 180);
+        }, i * 150);
     }
+
 });
+
 
 
 // BACK TO WELCOME
