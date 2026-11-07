@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Shubh Deepawali 🪔</title>
+    <title>Shubh Deepawali | Akshita</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,12 +16,10 @@
     <!-- Fireworks background -->
     <canvas id="fireworks"></canvas>
 
-    <!-- Main greeting card -->
-    <div class="container">
+    <!-- SCREEN 1: WELCOME -->
+    <section class="screen container" id="welcomeScreen">
 
-        <p class="top-text">
-            ✦ THE FESTIVAL OF LIGHTS ✦
-        </p>
+        <p class="top-text">✦ THE FESTIVAL OF LIGHTS ✦</p>
 
         <h1>Shubh Deepawali</h1>
 
@@ -34,9 +30,7 @@
             prosperity and endless blessings.
         </p>
 
-        <!-- Animated Diyas -->
         <div class="diyas">
-
             <div class="diya">
                 <div class="flame"></div>
                 <div class="bowl"></div>
@@ -51,21 +45,85 @@
                 <div class="flame"></div>
                 <div class="bowl"></div>
             </div>
-
         </div>
 
-        <button onclick="celebrate()">
+        <button id="celebrateButton">
             Celebrate Diwali ✨
         </button>
 
-        <p class="footer">
-            Made with love ❤️
-        </p>
+        <p class="footer">Made with love ❤️</p>
 
-    </div>
+    </section>
 
-    <!-- JavaScript -->
+
+    <!-- SCREEN 2: CELEBRATION -->
+    <section class="screen celebration-screen"
+             id="celebrationScreen" hidden>
+
+        <!-- Colourful fairy lights -->
+        <div class="fairy-lights">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <p class="top-text">✦ A FESTIVAL OF LOVE & LIGHT ✦</p>
+
+        <h1 class="celebration-title">
+            A Little Surprise For You!
+        </h1>
+
+        <div class="gold-line"></div>
+
+        <div class="wish-message">
+            <p>
+                May this Diwali bring endless
+                happiness, beautiful memories,
+                success and prosperity into your life.
+            </p>
+
+            <p class="special-wish">
+                May every diya light up
+                a new reason to smile. 🪔
+            </p>
+        </div>
+
+        <div class="celebration-diyas">
+            🪔 ✨ 🪔 ✨ 🪔
+        </div>
+
+        <div class="click-instruction">
+            <span>🎆</span>
+            Tap anywhere in the sky
+            <br>
+            and create your own fireworks!
+            <span>🎆</span>
+        </div>
+
+        <div class="signature">
+            <p>With love & light,</p>
+            <h2>Akshita</h2>
+            <span>✦ Shubh Deepawali ✦</span>
+        </div>
+
+        <button class="back-button" id="backButton">
+            ↩ Back to Welcome
+        </button>
+
+    </section>
+
+
     <script src="script.js"></script>
 
 </body>
 </html>
+

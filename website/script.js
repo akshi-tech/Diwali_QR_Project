@@ -2,18 +2,24 @@
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
+const welcome = document.getElementById("welcomeScreen");
+const celebration = document.getElementById("celebrationScreen");
+
+const celebrateButton = document.getElementById("celebrateButton");
+const backButton = document.getElementById("backButton");
+
 let rockets = [];
 let particles = [];
 let lastLaunch = 0;
 
-// Golden Diwali colour palette
 const colors = [
     "#FFD700",
-    "#FFB347",
-    "#FFF0A5",
-    "#FF8C42",
-    "#FF5E78",
-    "#FFFFFF"
+    "#FF4D6D",
+    "#39E6C1",
+    "#A879FF",
+    "#FF9D32",
+    "#FFFFFF",
+    "#FF69B4"
 ];
 
 // Canvas setup
@@ -30,39 +36,40 @@ function resizeCanvas() {
 }
 
 resizeCanvas();
+
 window.addEventListener("resize", resizeCanvas);
 
-// Launch a rocket
-function launchRocket() {
+
+// Launch a rocket towards a target
+function launchRocket(targetX, targetY) {
 
     const x = Math.random() * window.innerWidth;
-
-    const targetY =
-        window.innerHeight * (0.15 + Math.random() * 0.4);
 
     rockets.push({
         x: x,
         y: window.innerHeight + 10,
-        targetY: targetY,
-        speed: 4 + Math.random() * 2,
+
+        targetX: targetX ?? Math.random() * window.innerWidth,
+        targetY: targetY ?? window.innerHeight * (0.15 + Math.random() * 0.4),
+
         color: colors[
             Math.floor(Math.random() * colors.length)
         ],
+
         trail: []
     });
 }
 
-// Create explosion
+
+// Create colourful explosion
 function explode(x, y, color) {
 
-    const count = 75;
+    const count = 85;
 
     for (let i = 0; i < count; i++) {
 
-        const angle =
-            (Math.PI * 2 * i) / count;
-
-        const speed = 1.5 + Math.random() * 4;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 4 + 1.5;
 
         particles.push({
             x: x,
@@ -83,24 +90,18 @@ function explode(x, y, color) {
     }
 }
 
-// Update rockets
+
+// Move rockets
 function updateRockets() {
 
     rockets.forEach((rocket, index) => {
 
-        rocket.y -= rocket.speed;
+        const dx = rocket.targetX - rocket.x;
+        const dy = rocket.targetY - rocket.y;
 
-        rocket.trail.push({
-            x: rocket.x,
-            y: rocket.y
-        });
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (rocket.trail.length > 8) {
-            rocket.trail.shift();
-        }
-
-        // Rocket reaches its destination
-        if (rocket.y <= rocket.targetY) {
+        if (distance < 9) {
 
             explode(
                 rocket.x,
@@ -109,9 +110,23 @@ function updateRockets() {
             );
 
             rockets.splice(index, 1);
+            return;
+        }
+
+        rocket.x += (dx / distance) * 6;
+        rocket.y += (dy / distance) * 6;
+
+        rocket.trail.push({
+            x: rocket.x,
+            y: rocket.y
+        });
+
+        if (rocket.trail.length > 10) {
+            rocket.trail.shift();
         }
     });
 }
+
 
 // Draw rockets
 function drawRockets() {
@@ -120,16 +135,18 @@ function drawRockets() {
 
         ctx.beginPath();
 
-        ctx.moveTo(rocket.x, rocket.y);
+        rocket.trail.forEach((point, index) => {
 
-        ctx.lineTo(
-            rocket.x,
-            rocket.y + 15
-        );
+            if (index === 0) {
+                ctx.moveTo(point.x, point.y);
+            } else {
+                ctx.lineTo(point.x, point.y);
+            }
+        });
 
         ctx.strokeStyle = rocket.color;
-        ctx.lineWidth = 3;
-        ctx.shadowBlur = 15;
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 12;
         ctx.shadowColor = rocket.color;
 
         ctx.stroke();
@@ -137,6 +154,7 @@ function drawRockets() {
         ctx.shadowBlur = 0;
     });
 }
+
 
 // Update explosion particles
 function updateParticles() {
@@ -162,7 +180,8 @@ function updateParticles() {
     });
 }
 
-// Draw glowing particles
+
+// Draw sparkling particles
 function drawParticles() {
 
     particles.forEach(p => {
@@ -200,7 +219,8 @@ function drawParticles() {
     ctx.shadowBlur = 0;
 }
 
-// Main animation loop
+
+// Main animation
 function animate(timestamp) {
 
     ctx.clearRect(
@@ -210,8 +230,11 @@ function animate(timestamp) {
         window.innerHeight
     );
 
-    // Automatically launch rockets
-    if (timestamp - lastLaunch > 1100) {
+    // Automatic fireworks
+    if (
+        !celebration.hidden &&
+        timestamp - lastLaunch > 1200
+    ) {
         launchRocket();
         lastLaunch = timestamp;
     }
@@ -225,16 +248,55 @@ function animate(timestamp) {
     requestAnimationFrame(animate);
 }
 
-// Start fireworks
 requestAnimationFrame(animate);
 
-// Button celebration
-function celebrate() {
 
-    // Launch multiple fireworks together
+// SCREEN TRANSITION
+celebrateButton.addEventListener("click", () => {
+
+    welcome.hidden = true;
+    celebration.hidden = false;
+
+    // Initial celebration burst
     for (let i = 0; i < 5; i++) {
+
         setTimeout(() => {
             launchRocket();
+        }, i * 200);
+    }
+});
+
+
+// CLICK ANYWHERE TO CREATE FIREWORKS
+celebration.addEventListener("click", (event) => {
+
+    if (event.target.closest("button")) {
+        return;
+    }
+
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // Multiple colourful fireworks at click position
+    for (let i = 0; i < 3; i++) {
+
+        setTimeout(() => {
+
+            launchRocket(
+                x + (Math.random() - 0.5) * 70,
+                y + (Math.random() - 0.5) * 70
+            );
+
         }, i * 180);
     }
-}
+});
+
+
+// BACK TO WELCOME
+backButton.addEventListener("click", () => {
+
+    celebration.hidden = true;
+    welcome.hidden = false;
+
+});
+
