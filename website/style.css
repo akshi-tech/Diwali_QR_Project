@@ -1,5 +1,7 @@
 
-/* General styling */
+/* =================================
+   SHUBH DEEPAWALI - ROYAL THEME
+================================= */
 
 * {
     margin: 0;
@@ -22,222 +24,357 @@ body {
     overflow: hidden;
 }
 
-/* Fireworks background */
+/* FIREWORKS CANVAS */
 
 #fireworks {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     pointer-events: none;
     z-index: 0;
 }
 
-/* Main greeting card */
+/* GREETING CARD */
 
 .container {
     position: relative;
     z-index: 1;
 
-    padding: 40px 25px;
-
-    border: 2px solid #C99B42;
-    border-radius: 20px;
+    padding: 45px 30px;
 
     width: 90%;
-    max-width: 600px;
+    max-width: 650px;
 
-    background: rgba(35, 15, 23, 0.85);
+    background: rgba(35, 15, 23, 0.90);
+
+    border: 1px solid #D6A744;
+    border-radius: 24px;
 
     box-shadow:
-        0 0 20px #A8782B,
-        inset 0 0 20px rgba(214, 167, 68, 0.1);
+        0 0 15px rgba(214, 167, 68, 0.35),
+        0 0 45px rgba(214, 167, 68, 0.16),
+        inset 0 0 30px rgba(214, 167, 68, 0.07);
+
+    animation: cardGlow 4s ease-in-out infinite alternate;
 }
 
-/* Top heading */
+@keyframes cardGlow {
+    from {
+        box-shadow:
+            0 0 15px rgba(214, 167, 68, 0.25),
+            0 0 35px rgba(214, 167, 68, 0.10);
+    }
+
+    to {
+        box-shadow:
+            0 0 25px rgba(255, 200, 90, 0.55),
+            0 0 60px rgba(214, 167, 68, 0.22);
+    }
+}
+
+/* TOP TEXT */
 
 .top-text {
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     font-size: 12px;
-
-    margin-bottom: 25px;
     color: #E6B95C;
+    margin-bottom: 25px;
 }
 
-/* Main title */
+/* MAIN HEADING */
 
 h1 {
-    font-size: 42px;
+    font-size: clamp(32px, 6vw, 48px);
     color: #FFD77A;
+    margin-bottom: 22px;
 
-    margin-bottom: 20px;
+    text-shadow:
+        0 0 8px #D69C35,
+        0 0 25px rgba(255, 190, 70, 0.65);
 
-    text-shadow: 0 0 15px #D69C35;
+    animation: titleGlow 3s infinite alternate;
 }
 
-/* Decorative line */
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 8px #D69C35;
+    }
+
+    to {
+        text-shadow:
+            0 0 15px #FFD77A,
+            0 0 35px #D69C35;
+    }
+}
+
+/* DECORATIVE LINE */
 
 .gold-line {
-    width: 100px;
+    width: 110px;
     height: 2px;
-
     background: #D6A744;
+    margin: 0 auto 28px;
 
-    margin: 0 auto 25px;
+    box-shadow: 0 0 12px #FFD77A;
 }
 
-/* Greeting message */
+/* MESSAGE */
 
 .message {
     font-size: 18px;
-    line-height: 1.8;
-
+    line-height: 1.9;
     color: #FFF0C2;
 }
 
-/* Diyas section */
+/* DIYA CONTAINER */
 
 .diyas {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 65px;
 
-    gap: 55px;
-
-    margin: 55px 0;
+    margin: 65px 0;
 }
 
-/* Individual diya */
+/* INDIVIDUAL DIYA */
 
 .diya {
     position: relative;
-
     width: 65px;
     height: 65px;
+
+    animation: diyaFloat 3s ease-in-out infinite;
 }
 
-/* Diya bowl */
+.diya:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.diya:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+@keyframes diyaFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* GOLDEN BOWL */
 
 .bowl {
     position: absolute;
     bottom: 0;
+    left: 0;
 
     width: 65px;
     height: 27px;
 
     background: linear-gradient(
-        #F9D477,
-        #A96812,
-        #6D3908
+        to bottom,
+        #FFE49A 0%,
+        #D99A32 35%,
+        #98510D 75%,
+        #572C08 100%
     );
 
-    border-radius: 10px 10px 35px 35px;
+    border-radius: 8px 8px 35px 35px;
 
-    box-shadow: 0 0 20px #D69C35;
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.4),
+        0 0 18px rgba(255, 174, 43, 0.65);
 }
 
-/* Diya flame */
+/* FLAME */
 
 .flame {
     position: absolute;
-
     left: 25px;
-    bottom: 24px;
+    bottom: 23px;
 
     width: 16px;
-    height: 31px;
+    height: 33px;
 
     background: linear-gradient(
         to top,
-        #FF5A00,
-        #FFD447,
-        #FFF4C2
+        #FF5700,
+        #FFAA22,
+        #FFE879,
+        #FFFCE1
     );
 
-    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+    border-radius: 50% 50% 45% 45%;
 
     transform-origin: bottom center;
 
-    animation: flicker 0.35s infinite alternate;
+    filter: drop-shadow(0 0 8px #FFAE22);
 
-    box-shadow: 0 0 18px #FFAA22;
+    animation: flameDance 0.55s ease-in-out infinite alternate;
 }
 
-/* Flame animation */
+.flame::before {
+    content: "";
 
-@keyframes flicker {
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
 
+    width: 8px;
+    height: 19px;
+
+    background: #FFF8D7;
+    border-radius: 50%;
+
+    filter: blur(2px);
+}
+
+.flame::after {
+    content: "";
+
+    position: absolute;
+    left: -9px;
+    top: 4px;
+
+    width: 34px;
+    height: 34px;
+
+    background: rgba(255, 164, 38, 0.15);
+    border-radius: 50%;
+
+    filter: blur(10px);
+}
+
+@keyframes flameDance {
     0% {
-        transform: rotate(-8deg) scale(0.95);
+        transform: rotate(-10deg) scale(0.92, 1);
+    }
+
+    25% {
+        transform: rotate(5deg) scale(1.08, 0.95);
     }
 
     50% {
-        transform: rotate(5deg) scale(1.08);
+        transform: rotate(-5deg) scale(0.95, 1.12);
+    }
+
+    75% {
+        transform: rotate(8deg) scale(1.05, 0.97);
     }
 
     100% {
-        transform: rotate(-4deg) scale(0.98);
+        transform: rotate(-7deg) scale(0.96, 1.08);
     }
-
 }
 
-/* Button styling */
+/* BUTTON */
 
 button {
-    background: #D6A744;
-    color: #180C10;
+    position: relative;
+    overflow: hidden;
 
-    padding: 14px 25px;
+    background: linear-gradient(
+        135deg,
+        #FFE09A,
+        #D6A744,
+        #B77C25
+    );
 
-    border: none;
-    border-radius: 30px;
+    color: #25130B;
+
+    padding: 15px 30px;
+    border: 1px solid #FFE09A;
+    border-radius: 35px;
 
     font-size: 16px;
     font-family: Georgia, serif;
 
     cursor: pointer;
 
-    transition: 0.3s;
+    transition: all 0.35s ease;
 }
 
 button:hover {
-    background: #FFE09A;
+    transform: translateY(-4px) scale(1.05);
 
-    transform: scale(1.05);
-
-    box-shadow: 0 0 20px #D6A744;
+    box-shadow:
+        0 0 15px #FFD77A,
+        0 0 30px rgba(255, 190, 70, 0.5);
 }
 
-/* Footer */
+/* BUTTON SHIMMER */
+
+button::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.35);
+    transform: skewX(-25deg);
+}
+
+button:hover::before {
+    animation: shimmer 0.8s ease;
+}
+
+@keyframes shimmer {
+    to {
+        left: 150%;
+    }
+}
+
+/* FOOTER */
 
 .footer {
-    margin-top: 30px;
+    margin-top: 35px;
     font-size: 14px;
-
     color: #E6B95C;
 }
 
-/* Mobile responsiveness */
+/* MOBILE DESIGN */
 
 @media (max-width: 480px) {
-
     .container {
-        padding: 30px 15px;
+        padding: 35px 18px;
     }
 
-    h1 {
-        font-size: 32px;
+    .top-text {
+        font-size: 10px;
+        letter-spacing: 3px;
     }
 
     .message {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .diyas {
-        gap: 30px;
+        gap: 35px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .container,
+    .diya,
+    h1,
+    .flame {
+        animation: none;
     }
 
+    button {
+        transition: none;
+    }
 }
+
 
